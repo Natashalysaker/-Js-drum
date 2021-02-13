@@ -32,7 +32,7 @@
 
     <div data-key="72" class="key">
         <kbd>H</kbd>
-        <span class="sound">Pink</span>
+        <span class="sound">Pig</span>
     </div>
 
     <div data-key="74" class="key">
@@ -42,13 +42,26 @@
 </div>
 
 
-    <audio data-key="65" src="audio/Chicken.mp3"></audio>
-    <audio data-key="83" src="audio/Cow.mp3"></audio>
-    <audio data-key="68" src="audio/Goat-Baby.mp3"></audio>
-    <audio data-key="70" src="audio/Pig.mp3"></audio>
-    <audio data-key="71" src="audio/Sheep-Lamb.mp3"></audio>
+    <audio data-key="68" src="audio/Chicken.mp3"></audio>
+    <audio data-key="70" src="audio/Cow.mp3"></audio>
+    <audio data-key="71" src="audio/Goat-Baby.mp3"></audio>
+    <audio data-key="72" src="audio/Pig.mp3"></audio>
+    <audio data-key="74" src="audio/Sheep-Lamb.mp3"></audio>
 
 
-    <script src="js/script.js"></script>
+<script>
+ window.addEventListener('keydown', function(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    if(!audio)return; //stop the function from running all togther
+    audio.currentTime = 0; //rewind to the start
+    audio.play();
+   key.classList.add('playing');
+ });
+
+ const keys = document.querySelectorAll(".key");
+ keys.forEach(key => key.addEventListener('transitionend', removeTransitionend
+ ));
+</script>
 </body>
 </html>
